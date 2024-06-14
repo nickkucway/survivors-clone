@@ -1,0 +1,14 @@
+Label
+TextureRect
+ColorRect
+AudioStreamPlayer
+VBoxContainer
+Panel
+Node2D
+TextureProgressBar
+Control
+CanvasLayer
+CollisionShape2D
+Area2D
+Sprite2D
+AudioStreamPlayer2D
