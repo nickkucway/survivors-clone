@@ -27,7 +27,13 @@ var collected_experience = 0
 @onready var collectedUpgrades = %CollectedUpgrades
 @onready var itemContainer = preload("res://Player/GUI/item_container.tscn")
 
+@onready var deathPanel = %DeathPanel
+@onready var lblResult = %lbl_Result
+@onready var sndVictory = %snd_victory
+@onready var sndLose = %snd_lose
 
+#signals
+signal playerDeath
 
 #attacks
 var IceSpear = preload('res://Player/Attack/ice_spear.tscn')
@@ -72,6 +78,8 @@ var enemy_close = []
 
 func _physics_process(delta):
 	movement()
+	if Input.is_action_just_pressed("exit"):
+		get_tree().quit()
 	
 func _ready():
 	upgrade_character('icespear1')
@@ -117,6 +125,8 @@ func _on_hurt_box_hurt(damage, _angle, _knockback):
 	hp -= clamp(damage - armor, 1, 999.0)
 	healthBar.max_value = maxhp
 	healthBar.value = hp
+	if hp <= 0:
+		death()
 
 func _on_ice_spear_timer_timeout():
 	icespear_ammo += icespear_baseammo + additional_attacks
@@ -352,3 +362,21 @@ func adjust_gui_collection(upgrade):
 				'upgrade':
 					collectedUpgrades.add_child(new_item)
 		
+func death():
+	deathPanel.visible = true
+	get_tree().paused = true
+	emit_signal("playerDeath")
+	var tween = deathPanel.create_tween()
+	tween.tween_property(deathPanel, 'position', Vector2(220, 50), 3.0).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
+	tween.play()
+	if time>= 300:
+		lblResult.text = "You Win"
+		sndVictory.play()
+	else:
+		lblResult.text = "You Died"
+		sndLose.play()
+
+
+func _on_btn_menu_click_end():
+	get_tree().paused = false
+	var _level = get_tree().change_scene_to_file("res://TitleScreen/menu.tscn")

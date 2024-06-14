@@ -16,3 +16,14 @@ res://Player/Attack/tornado.gd
 res://Utility/enemy_spawner.gd
 res://Player/GUI/item_container.tscn
 res://Player/GUI/item_container.gd
+res://Enemy/enemy_kobold_weak.tscn
+res://Enemy/enemy_kobold_strong.tscn
+res://Enemy/enemy_cyclops.tscn
+res://Enemy/enemy_juggernaut.tscn
+res://Enemy/enemy_super.tscn
+res://Utility/basic_button.tscn
+res://Utility/basic_button.gd
+res://TitleScreen/menu.tscn
+res://TitleScreen/menu.gd
+res://default_bus_layout.tres
+res://Audio/Music/snd_music.gd
