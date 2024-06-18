@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+
 var movement_speed = 40.0
 var hp = 80.0
 var maxhp = 80
@@ -26,7 +27,9 @@ var collected_experience = 0
 @onready var collectedWeapons = %CollectedWeapons
 @onready var collectedUpgrades = %CollectedUpgrades
 @onready var itemContainer = preload("res://Player/GUI/item_container.tscn")
+var dmg_num = preload("res://Enemy/dmg_num.tscn")
 
+@onready var dmg_box = $GUILayer/GUI/dmg_box
 @onready var deathPanel = %DeathPanel
 @onready var lblResult = %lbl_Result
 @onready var sndVictory = %snd_victory
@@ -71,7 +74,6 @@ var tornado_level = 0
 #javelin
 var javelin_ammo = 0
 var javelin_level = 0
-
 
 var enemy_close = []
 
@@ -123,6 +125,13 @@ func attack():
 
 func _on_hurt_box_hurt(damage, _angle, _knockback):
 	hp -= clamp(damage - armor, 1, 999.0)
+	var new_dmg = dmg_num.instantiate()
+	new_dmg.global_position = Vector2(320,160)
+	if damage == 0:
+		new_dmg.text = ""
+	else:
+		new_dmg.text = str(damage)
+	dmg_box.call_deferred('add_child', new_dmg)
 	healthBar.max_value = maxhp
 	healthBar.value = hp
 	if hp <= 0:
@@ -237,7 +246,10 @@ func set_expbar(set_value = 1, set_max_value = 100):
 	
 func levelup():
 	snd_levelup.play()
-	lblLevel.text = str("Level: ", experience_level)
+	if experience_level < 10:
+		lblLevel.text = str("0",experience_level)
+	else:	
+		lblLevel.text = str(experience_level)
 	var tween = levelPanel.create_tween()
 	tween.tween_property(levelPanel, "position", Vector2(220, 50),0.2).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_IN)
 	tween.play()
@@ -367,7 +379,7 @@ func death():
 	get_tree().paused = true
 	emit_signal("playerDeath")
 	var tween = deathPanel.create_tween()
-	tween.tween_property(deathPanel, 'position', Vector2(220, 50), 3.0).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
+	tween.tween_property(deathPanel, 'position', Vector2(220, 110), 3.0).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
 	tween.play()
 	if time>= 300:
 		lblResult.text = "You Win"

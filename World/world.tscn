@@ -1,6 +1,6 @@
-[gd_scene load_steps=21 format=3 uid="uid://db1s0fuyn8vpf"]
+[gd_scene load_steps=22 format=3 uid="uid://db1s0fuyn8vpf"]
 
-[ext_resource type="Texture2D" uid="uid://0bn2u4nrxw6m" path="res://Textures/dirt_full_new.png" id="1_qbix1"]
+[ext_resource type="PackedScene" uid="uid://co2k50oxdd8d0" path="res://World/background.tscn" id="1_taifs"]
 [ext_resource type="PackedScene" uid="uid://cswx8dua1y3vg" path="res://Player/player.tscn" id="2_c0i2w"]
 [ext_resource type="PackedScene" uid="uid://b8hu8ikyfnqoy" path="res://Utility/enemy_spawner.tscn" id="3_frmxd"]
 [ext_resource type="PackedScene" uid="uid://vlh4255yffcd" path="res://Enemy/enemy_kobold_weak.tscn" id="4_6ktud"]
@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://bvdrcd4xtwtur" path="res://Enemy/enemy_cyclops.tscn" id="7_sn6f1"]
 [ext_resource type="PackedScene" uid="uid://bexulj10bol5d" path="res://Enemy/enemy_juggernaut.tscn" id="8_buqrh"]
 [ext_resource type="PackedScene" uid="uid://bl6do75v6f4ke" path="res://Enemy/enemy_super.tscn" id="9_vuggt"]
-[ext_resource type="AudioStream" uid="uid://co48rbq2shoip" path="res://Audio/Music/battleThemeA.mp3" id="10_wd7jh"]
+[ext_resource type="AudioStream" uid="uid://cn3od4od2uy85" path="res://Audio/Music/underhaven.mp3" id="10_0asfd"]
 [ext_resource type="Script" path="res://Audio/Music/snd_music.gd" id="11_qilwd"]
 
 [sub_resource type="Resource" id="Resource_mwmt7"]
@@ -84,16 +84,27 @@ enemy = ExtResource("9_vuggt")
 enemy_num = 1
 enemy_spawn_delay = 0
 
-[node name="World" type="Node2D"]
+[sub_resource type="Environment" id="Environment_64tft"]
+background_mode = 4
+ambient_light_source = 2
+ambient_light_color = Color(0.141176, 0.470588, 0.501961, 1)
+tonemap_mode = 2
+glow_enabled = true
+glow_normalized = true
+glow_bloom = 1.0
+fog_enabled = true
+fog_light_color = Color(0.156863, 0.592157, 0.901961, 1)
+fog_height = 0.8
+fog_height_density = 1.2
+volumetric_fog_density = 0.424
+volumetric_fog_albedo = Color(0, 0, 0, 1)
+volumetric_fog_emission = Color(0.156863, 0.156863, 0.156863, 1)
+volumetric_fog_anisotropy = -0.4
+volumetric_fog_length = 463.61
 
-[node name="Background" type="Sprite2D" parent="."]
-texture_filter = 2
-texture_repeat = 2
-texture = ExtResource("1_qbix1")
-region_enabled = true
-region_rect = Rect2(2.08165e-12, 2.08165e-12, 4000, 4000)
+[node name="World" type="Node3D"]
 
-[node name="Player" parent="." instance=ExtResource("2_c0i2w")]
+[node name="Background" parent="." instance=ExtResource("1_taifs")]
 
 [node name="EnemySpawner" parent="." instance=ExtResource("3_frmxd")]
 spawns = Array[ExtResource("5_2o8mq")]([SubResource("Resource_mwmt7"), SubResource("Resource_hfc5p"), SubResource("Resource_814xy"), SubResource("Resource_s7l4t"), SubResource("Resource_oneh3"), SubResource("Resource_8ochd"), SubResource("Resource_2w1gr"), SubResource("Resource_sgs16"), SubResource("Resource_bsatv")])
@@ -102,9 +113,14 @@ spawns = Array[ExtResource("5_2o8mq")]([SubResource("Resource_mwmt7"), SubResour
 
 [node name="snd_music" type="AudioStreamPlayer" parent="."]
 process_mode = 3
-stream = ExtResource("10_wd7jh")
-autoplay = true
+stream = ExtResource("10_0asfd")
+pitch_scale = 1.2
 bus = &"Music"
 script = ExtResource("11_qilwd")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_64tft")
+
+[node name="Player" parent="." instance=ExtResource("2_c0i2w")]
 
 [connection signal="playerDeath" from="Player" to="snd_music" method="_on_player_player_death"]

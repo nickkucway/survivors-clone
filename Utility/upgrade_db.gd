@@ -68,7 +68,7 @@ const UPGRADES = {
 		"type": "weapon"
 	},
 	"tornado1": {
-		"icon": WEAPON_PATH + "tornado.png",
+		"icon": WEAPON_PATH + "tornado_display.png",
 		"displayname": "Tornado",
 		"details": "A tornado is created and random heads somewhere in the players direction",
 		"level": "Level: 1",
@@ -76,7 +76,7 @@ const UPGRADES = {
 		"type": "weapon"
 	},
 	"tornado2": {
-		"icon": WEAPON_PATH + "tornado.png",
+		"icon": WEAPON_PATH + "tornado_display.png",
 		"displayname": "Tornado",
 		"details": "An additional Tornado is created",
 		"level": "Level: 2",
@@ -84,7 +84,7 @@ const UPGRADES = {
 		"type": "weapon"
 	},
 	"tornado3": {
-		"icon": WEAPON_PATH + "tornado.png",
+		"icon": WEAPON_PATH + "tornado_display.png",
 		"displayname": "Tornado",
 		"details": "The Tornado cooldown is reduced by 0.5 seconds",
 		"level": "Level: 3",
@@ -92,7 +92,7 @@ const UPGRADES = {
 		"type": "weapon"
 	},
 	"tornado4": {
-		"icon": WEAPON_PATH + "tornado.png",
+		"icon": WEAPON_PATH + "tornado_display.png",
 		"displayname": "Tornado",
 		"details": "An additional tornado is created and the knockback is increased by 25%",
 		"level": "Level: 4",

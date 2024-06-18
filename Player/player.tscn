@@ -1,11 +1,12 @@
-[gd_scene load_steps=18 format=3 uid="uid://cswx8dua1y3vg"]
+[gd_scene load_steps=19 format=3 uid="uid://cswx8dua1y3vg"]
 
 [ext_resource type="Script" path="res://Player/player.gd" id="1_nioai"]
 [ext_resource type="Texture2D" uid="uid://bs8l4ofh8vauv" path="res://Textures/Player/player_sprite.png" id="1_u673y"]
 [ext_resource type="PackedScene" uid="uid://b86dn3foyd106" path="res://Utility/hurt_box.tscn" id="3_wuv3p"]
 [ext_resource type="Texture2D" uid="uid://clr8tawnvbfbb" path="res://Textures/GUI/exp_background.png" id="4_igkmg"]
 [ext_resource type="Texture2D" uid="uid://b1q7rfk0m1by7" path="res://Textures/GUI/exp_progress.png" id="5_pen7g"]
-[ext_resource type="FontFile" uid="uid://wanc62v5qo75" path="res://Font/tenderness.otf" id="6_w3r60"]
+[ext_resource type="FontFile" uid="uid://cj2ydmptfj3q2" path="res://Font/Times New Roman - Bold Italic.ttf" id="6_0seu6"]
+[ext_resource type="FontFile" uid="uid://dtyjkquqtfky1" path="res://Font/SHPinscher-Regular.otf" id="6_cik61"]
 [ext_resource type="AudioStream" uid="uid://bfy7i5w6dd1jg" path="res://Audio/SoundEffect/levelup.ogg" id="7_y663t"]
 [ext_resource type="Texture2D" uid="uid://it17jvqkehxd" path="res://Textures/GUI/healthbar.png" id="8_2x0rx"]
 [ext_resource type="Texture2D" uid="uid://ct8kg8uqa067b" path="res://Textures/GUI/health.png" id="9_1l1d4"]
@@ -102,7 +103,7 @@ shape = SubResource("CircleShape2D_0hjbp")
 
 [node name="GUILayer" type="CanvasLayer" parent="."]
 
-[node name="GUI" type="Control" parent="GUILayer"]
+[node name="GUI" type="Control" parent="GUILayer" groups=["gui"]]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 640.0
@@ -111,38 +112,77 @@ offset_bottom = 360.0
 [node name="ExperienceBar" type="TextureProgressBar" parent="GUILayer/GUI"]
 unique_name_in_owner = true
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-texture_under = ExtResource("4_igkmg")
+offset_left = 19.0
+offset_top = 8.0
+offset_right = 659.0
+offset_bottom = 48.0
+scale = Vector2(0.95, 0.95)
+texture_over = ExtResource("4_igkmg")
 texture_progress = ExtResource("5_pen7g")
 
 [node name="lbl_level" type="Label" parent="GUILayer/GUI/ExperienceBar"]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 540.0
-offset_right = 640.0
-offset_bottom = 20.0
-theme_override_fonts/font = ExtResource("6_w3r60")
-theme_override_font_sizes/font_size = 16
-text = "Level: 1"
-horizontal_alignment = 1
+offset_left = 531.0
+offset_top = 11.0
+offset_right = 631.0
+offset_bottom = 67.0
+theme_override_colors/font_color = Color(0.4, 1, 0.4, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_0seu6")
+theme_override_font_sizes/font_size = 50
+text = "01"
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="level" type="Label" parent="GUILayer/GUI/ExperienceBar"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 478.947
+offset_top = -11.5789
+offset_right = 578.947
+offset_bottom = 44.4211
+theme_override_colors/font_color = Color(0.4, 1, 0.4, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_0seu6")
+theme_override_font_sizes/font_size = 25
+text = "LEVEL:"
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="hp" type="Label" parent="GUILayer/GUI/ExperienceBar"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = -28.4211
+offset_top = 309.474
+offset_right = 71.5789
+offset_bottom = 365.474
+theme_override_colors/font_color = Color(0.4, 1, 0.4, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_0seu6")
+theme_override_font_sizes/font_size = 50
+text = "HP"
+horizontal_alignment = 2
 vertical_alignment = 2
 
 [node name="HealthBar" type="TextureProgressBar" parent="GUILayer/GUI"]
 unique_name_in_owner = true
-modulate = Color(1, 1, 1, 0.478431)
 layout_mode = 0
-offset_left = 304.0
-offset_top = 200.0
-offset_right = 336.0
-offset_bottom = 208.0
+offset_left = 92.0
+offset_top = 329.0
+offset_right = 124.0
+offset_bottom = 337.0
+scale = Vector2(2, 2)
 texture_over = ExtResource("8_2x0rx")
 texture_progress = ExtResource("9_1l1d4")
 
 [node name="LevelUp" type="Panel" parent="GUILayer/GUI"]
 unique_name_in_owner = true
 process_mode = 2
-visible = false
+z_index = 2
 layout_mode = 0
 offset_left = 800.0
 offset_top = 50.0
@@ -153,7 +193,8 @@ offset_bottom = 300.0
 layout_mode = 0
 offset_right = 200.0
 offset_bottom = 50.0
-theme_override_fonts/font = ExtResource("6_w3r60")
+theme_override_fonts/font = ExtResource("6_0seu6")
+theme_override_font_sizes/font_size = 25
 text = "Level Up!"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -173,19 +214,30 @@ stream = ExtResource("7_y663t")
 [node name="DeathPanel" type="Panel" parent="GUILayer/GUI"]
 unique_name_in_owner = true
 process_mode = 2
-visible = false
-layout_mode = 0
-offset_left = 222.0
-offset_top = -314.0
-offset_right = 422.0
-offset_bottom = -64.0
+z_index = 2
+layout_mode = 1
+anchors_preset = -1
+offset_left = 220.0
+offset_top = -207.0
+offset_right = 420.0
+offset_bottom = -67.0
 
 [node name="lbl_Result" type="Label" parent="GUILayer/GUI/DeathPanel"]
 unique_name_in_owner = true
-layout_mode = 0
-offset_right = 200.0
-offset_bottom = 50.0
-theme_override_fonts/font = ExtResource("6_w3r60")
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -1.099
+anchor_top = 1.444
+anchor_right = -1.099
+anchor_bottom = 1.444
+offset_left = 219.8
+offset_top = -188.492
+offset_right = 419.8
+offset_bottom = -132.492
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("6_0seu6")
+theme_override_font_sizes/font_size = 45
 text = "Result"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -197,25 +249,28 @@ stream = ExtResource("10_k1iw7")
 [node name="snd_lose" type="AudioStreamPlayer" parent="GUILayer/GUI/DeathPanel"]
 unique_name_in_owner = true
 stream = ExtResource("11_pkwgo")
-pitch_scale = 0.76
+pitch_scale = 0.68
 
 [node name="btn_menu" parent="GUILayer/GUI/DeathPanel" instance=ExtResource("12_p6jru")]
 layout_mode = 0
-offset_left = 60.0
-offset_top = 200.0
-offset_right = 140.0
-offset_bottom = 230.0
+offset_left = 64.0
+offset_top = 86.0
+offset_right = 144.0
+offset_bottom = 117.0
 text = "Menu"
 
 [node name="lblTimer" type="Label" parent="GUILayer/GUI"]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 280.0
-offset_top = 20.0
-offset_right = 360.0
-offset_bottom = 44.0
-theme_override_fonts/font = ExtResource("6_w3r60")
-theme_override_font_sizes/font_size = 20
+offset_left = 242.0
+offset_top = 11.0
+offset_right = 407.0
+offset_bottom = 73.0
+theme_override_colors/font_color = Color(0.4, 1, 0.4, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_cik61")
+theme_override_font_sizes/font_size = 70
 text = "00:00"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -223,20 +278,27 @@ vertical_alignment = 1
 [node name="CollectedWeapons" type="GridContainer" parent="GUILayer/GUI"]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 8.0
-offset_top = 24.0
-offset_right = 208.0
-offset_bottom = 40.0
+offset_left = 19.0
+offset_top = 38.0
+offset_right = 219.0
+offset_bottom = 54.0
 columns = 10
 
 [node name="CollectedUpgrades" type="GridContainer" parent="GUILayer/GUI"]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 8.0
-offset_top = 40.0
-offset_right = 208.0
-offset_bottom = 56.0
+offset_left = 19.0
+offset_top = 54.0
+offset_right = 219.0
+offset_bottom = 70.0
 columns = 10
+
+[node name="dmg_box" type="Control" parent="GUILayer/GUI"]
+anchors_preset = 0
+offset_left = 318.0
+offset_top = 179.0
+offset_right = 358.0
+offset_bottom = 219.0
 
 [connection signal="hurt" from="HurtBox" to="." method="_on_hurt_box_hurt"]
 [connection signal="timeout" from="Attack/IceSpearTimer" to="." method="_on_ice_spear_timer_timeout"]

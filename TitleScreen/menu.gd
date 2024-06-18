@@ -11,6 +11,6 @@ func _on_btn_play_click_end():
 func _on_btn_exit_click_end():
 	get_tree().quit()
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if Input.is_action_just_pressed("exit"):
 		get_tree().quit()

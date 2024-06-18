@@ -6,9 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://bgy0ehpc8vp13" path="res://Utility/hit_box.tscn" id="4_40vch"]
 [ext_resource type="AudioStream" uid="uid://blj576gjvi5ue" path="res://Audio/SoundEffect/enemy_hit.ogg" id="5_w2ph4"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6t54r"]
-radius = 7.0
-height = 20.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_ap66c"]
+radius = 7.36139
 
 [sub_resource type="Animation" id="Animation_ij81n"]
 length = 0.001
@@ -73,7 +72,7 @@ hframes = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)
 scale = Vector2(1.92761, 1.6663)
-shape = SubResource("CapsuleShape2D_6t54r")
+shape = SubResource("CircleShape2D_ap66c")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -101,6 +100,13 @@ shape = SubResource("RectangleShape2D_nvxw4")
 [node name="snd_hit" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_w2ph4")
 bus = &"sfx"
+
+[node name="dmg_num_canvas" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
 [connection signal="hurt" from="HurtBox" to="." method="_on_hurt_box_hurt"]
 

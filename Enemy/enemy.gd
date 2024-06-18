@@ -13,9 +13,14 @@ var knockback = Vector2.ZERO
 @onready var animation_player = $AnimationPlayer
 @onready var snd_hit = $snd_hit
 @onready var hitBox = $HitBox
+@onready var dmg_num_canvas = %dmg_num_canvas
+
+
+
 
 var death_anim = preload("res://Enemy/explosion.tscn")
 var exp_gem = preload('res://Objects/experience_gem.tscn')
+var dmg_num = preload("res://Enemy/dmg_num.tscn")
 
 signal remove_from_array(object)
 
@@ -36,9 +41,10 @@ func _physics_process(_delta):
 	elif direction.x < -0.1:
 		sprite.flip_h = false
 
-func death():
+func death(dmg):
 		emit_signal('remove_from_array', self)
 		var enemy_death = death_anim.instantiate()
+		enemy_death.update_damage(dmg)
 		enemy_death.scale = sprite.scale
 		enemy_death.global_position = global_position
 		get_parent().call_deferred("add_child", enemy_death)
@@ -47,13 +53,15 @@ func death():
 		new_gem.experience = experience
 		loot_base.call_deferred('add_child', new_gem)
 		queue_free()
-	
 
 func _on_hurt_box_hurt(damage, angle, knockback_amount):
 	hp -= damage
 	knockback = angle * knockback_amount
+	var new_dmg = dmg_num.instantiate()
+	new_dmg.global_position = global_position
+	new_dmg.text = str(damage)
+	dmg_num_canvas.call_deferred('add_child', new_dmg)
 	if hp <= 0:
-		death()
+		death(damage)
 	else:
 		snd_hit.play()
-	

@@ -100,6 +100,13 @@ shape = SubResource("RectangleShape2D_nvxw4")
 stream = ExtResource("5_c2nfc")
 bus = &"sfx"
 
+[node name="dmg_num_canvas" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
 [connection signal="hurt" from="HurtBox" to="." method="_on_hurt_box_hurt"]
 
 [editable path="HurtBox"]
