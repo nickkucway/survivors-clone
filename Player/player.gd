@@ -310,6 +310,7 @@ func upgrade_character(upgrade):
 		"food":
 			hp += 20
 			hp = clamp(hp,0,maxhp)
+			_on_hurt_box_hurt(0,0,0)
 	adjust_gui_collection(upgrade)
 	attack()
 	
@@ -381,7 +382,7 @@ func death():
 	var tween = deathPanel.create_tween()
 	tween.tween_property(deathPanel, 'position', Vector2(220, 110), 3.0).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
 	tween.play()
-	if time>= 300:
+	if time>= 600:
 		lblResult.text = "You Win"
 		sndVictory.play()
 	else:

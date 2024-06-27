@@ -1,1 +1,9 @@
-res://Player/player.tscn
+res://dialog/timelines/timeline1.dtl
+res://dialog/Characters/NPC1.dch
+res://Ship/world.tscn
+res://Ship/player/player.tscn
+res://Ship/player/camera_rig.tscn
+res://Ship/assets/models/hangar/hangar_survivors.tscn
+res://globals/game_manager.gd
+res://Ship/convo_1.gd
+res://TitleScreen/menu.gd

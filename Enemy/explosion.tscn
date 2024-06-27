@@ -50,7 +50,8 @@ script = ExtResource("2_tv8pm")
 
 [node name="snd_explosion" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("2_vqha0")
-pitch_scale = 0.5
+volume_db = 19.079
+pitch_scale = 0.46
 autoplay = true
 bus = &"sfx"
 

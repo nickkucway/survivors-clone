@@ -1,3 +1,10 @@
+res://dialog/Characters
+res://dialog/timelines
+res://Ship/assets/models/hangar
+res://Ship/auto_hide
+res://globals
+res://Ship/materials/
+res://Ship
 res://Utility
 res://Enemy
 res://World

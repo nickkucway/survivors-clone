@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://db1s0fuyn8vpf"]
+[gd_scene load_steps=31 format=3 uid="uid://db1s0fuyn8vpf"]
 
 [ext_resource type="PackedScene" uid="uid://co2k50oxdd8d0" path="res://World/background.tscn" id="1_taifs"]
 [ext_resource type="PackedScene" uid="uid://cswx8dua1y3vg" path="res://Player/player.tscn" id="2_c0i2w"]
@@ -76,10 +76,82 @@ enemy = ExtResource("6_jy1el")
 enemy_num = 4
 enemy_spawn_delay = 0
 
-[sub_resource type="Resource" id="Resource_bsatv"]
+[sub_resource type="Resource" id="Resource_awqad"]
 script = ExtResource("5_2o8mq")
 time_start = 300
-time_end = 300
+time_end = 330
+enemy = ExtResource("4_6ktud")
+enemy_num = 15
+enemy_spawn_delay = 0
+
+[sub_resource type="Resource" id="Resource_tgwp7"]
+script = ExtResource("5_2o8mq")
+time_start = 320
+time_end = 360
+enemy = ExtResource("6_jy1el")
+enemy_num = 3
+enemy_spawn_delay = 0
+
+[sub_resource type="Resource" id="Resource_d5x8m"]
+script = ExtResource("5_2o8mq")
+time_start = 350
+time_end = 400
+enemy = ExtResource("7_sn6f1")
+enemy_num = 2
+enemy_spawn_delay = 2
+
+[sub_resource type="Resource" id="Resource_lykea"]
+script = ExtResource("5_2o8mq")
+time_start = 400
+time_end = 500
+enemy = ExtResource("6_jy1el")
+enemy_num = 2
+enemy_spawn_delay = 0
+
+[sub_resource type="Resource" id="Resource_10yiv"]
+script = ExtResource("5_2o8mq")
+time_start = 400
+time_end = 400
+enemy = ExtResource("8_buqrh")
+enemy_num = 2
+enemy_spawn_delay = 0
+
+[sub_resource type="Resource" id="Resource_bbpr3"]
+script = ExtResource("5_2o8mq")
+time_start = 450
+time_end = 500
+enemy = ExtResource("7_sn6f1")
+enemy_num = 2
+enemy_spawn_delay = 0
+
+[sub_resource type="Resource" id="Resource_jin2q"]
+script = ExtResource("5_2o8mq")
+time_start = 520
+time_end = 550
+enemy = ExtResource("8_buqrh")
+enemy_num = 2
+enemy_spawn_delay = 10
+
+[sub_resource type="Resource" id="Resource_pjoft"]
+script = ExtResource("5_2o8mq")
+time_start = 500
+time_end = 510
+enemy = ExtResource("4_6ktud")
+enemy_num = 15
+enemy_spawn_delay = 0
+
+[sub_resource type="Resource" id="Resource_lkfcg"]
+script = ExtResource("5_2o8mq")
+time_start = 530
+time_end = 600
+enemy = ExtResource("6_jy1el")
+enemy_num = 2
+enemy_spawn_delay = 0
+
+[sub_resource type="Resource" id="Resource_5b76b"]
+script = ExtResource("5_2o8mq")
+time_start = 600
+time_end = 600
 enemy = ExtResource("9_vuggt")
 enemy_num = 1
 enemy_spawn_delay = 0
@@ -107,7 +179,7 @@ volumetric_fog_length = 463.61
 [node name="Background" parent="." instance=ExtResource("1_taifs")]
 
 [node name="EnemySpawner" parent="." instance=ExtResource("3_frmxd")]
-spawns = Array[ExtResource("5_2o8mq")]([SubResource("Resource_mwmt7"), SubResource("Resource_hfc5p"), SubResource("Resource_814xy"), SubResource("Resource_s7l4t"), SubResource("Resource_oneh3"), SubResource("Resource_8ochd"), SubResource("Resource_2w1gr"), SubResource("Resource_sgs16"), SubResource("Resource_bsatv")])
+spawns = Array[ExtResource("5_2o8mq")]([SubResource("Resource_mwmt7"), SubResource("Resource_hfc5p"), SubResource("Resource_814xy"), SubResource("Resource_s7l4t"), SubResource("Resource_oneh3"), SubResource("Resource_8ochd"), SubResource("Resource_2w1gr"), SubResource("Resource_sgs16"), SubResource("Resource_awqad"), SubResource("Resource_tgwp7"), SubResource("Resource_d5x8m"), SubResource("Resource_lykea"), SubResource("Resource_10yiv"), SubResource("Resource_bbpr3"), SubResource("Resource_jin2q"), SubResource("Resource_pjoft"), SubResource("Resource_lkfcg"), SubResource("Resource_5b76b")])
 
 [node name="loot" type="Node2D" parent="." groups=["loot"]]
 
@@ -115,6 +187,7 @@ spawns = Array[ExtResource("5_2o8mq")]([SubResource("Resource_mwmt7"), SubResour
 process_mode = 3
 stream = ExtResource("10_0asfd")
 pitch_scale = 1.2
+autoplay = true
 bus = &"Music"
 script = ExtResource("11_qilwd")
 

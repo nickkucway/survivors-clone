@@ -245,8 +245,8 @@ const UPGRADES = {
 	},
 	"food": {
 		"icon": ICON_PATH + "chunk.png",
-		"displayname": "Food",
-		"details": "Heals you for 20 health",
+		"displayname": "Energy",
+		"details": "Heals your mech for 20 HP",
 		"level": "N/A",
 		"prerequisite": [],
 		"type": "item"

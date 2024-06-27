@@ -1,0 +1,48 @@
+[gd_scene load_steps=4 format=3 uid="uid://t7a3d6lhgeij"]
+
+[ext_resource type="Script" path="res://Ship/player/camera_rig.gd" id="1_vmkdc"]
+[ext_resource type="Shader" path="res://Ship/assets/shaders/forground_shader.gdshader" id="2_6b334"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_axk8s"]
+shader = ExtResource("2_6b334")
+shader_parameter/MULTIPLIER = 0.56
+shader_parameter/SCALE = 0.25
+shader_parameter/SOFTNESS = 0.45
+shader_parameter/BASE_OPACITY = 1.0
+
+[node name="CameraRig" type="Node3D"]
+script = ExtResource("1_vmkdc")
+
+[node name="base_camera" type="Camera3D" parent="."]
+cull_mask = 0
+
+[node name="background_viewport_container" type="SubViewportContainer" parent="base_camera"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="background_viewport" type="SubViewport" parent="base_camera/background_viewport_container"]
+transparent_bg = true
+handle_input_locally = false
+render_target_update_mode = 4
+
+[node name="background_camera" type="Camera3D" parent="base_camera/background_viewport_container/background_viewport"]
+cull_mask = 1
+
+[node name="foreground_viewport_container" type="SubViewportContainer" parent="base_camera"]
+material = SubResource("ShaderMaterial_axk8s")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="foreground_viewport" type="SubViewport" parent="base_camera/foreground_viewport_container"]
+transparent_bg = true
+handle_input_locally = false
+render_target_update_mode = 4
+
+[node name="foreground_camera" type="Camera3D" parent="base_camera/foreground_viewport_container/foreground_viewport"]
+cull_mask = 2

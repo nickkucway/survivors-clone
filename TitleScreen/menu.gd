@@ -1,6 +1,6 @@
 extends Control
 
-var level = "res://World/world.tscn"
+var level = "res://Ship/world.tscn"
 
 
 func _on_btn_play_click_end():
